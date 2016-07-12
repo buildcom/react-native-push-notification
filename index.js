@@ -81,7 +81,7 @@ Notifications.configure = function(options: Object) {
 				if ( firstNotification !== null ) {
 					this._onNotification(firstNotification, true);
 				}
-			});
+			}.bind(this));
 		}
 
 		this.isLoaded = true;
@@ -215,13 +215,9 @@ Notifications.getApplicationIconBadgeNumber = function() {
 };
 
 Notifications.popInitialNotification = function(handler) {
-	if ( Platform.OS === 'ios' ) {
-		this.callNative('getInitialNotification').then(function(result){
-			handler(result);
-		});
-	} else {
-		handler(this.callNative('getInitialNotification', arguments));
-	}
+    this.callNative('getInitialNotification').then(function(result){
+        handler(result);
+    });
 };
 
 Notifications.abandonPermissions = function() {
