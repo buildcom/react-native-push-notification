@@ -22,6 +22,7 @@ import java.util.Set;
 import org.json.*;
 
 import android.content.Context;
+import android.util.Log;
 
 public class RNPushNotification extends ReactContextBaseJavaModule {
     private ReactContext mReactContext;
