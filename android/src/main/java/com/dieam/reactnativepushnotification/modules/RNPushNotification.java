@@ -148,16 +148,14 @@ public class RNPushNotification extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getInitialNotification(Promise promise) {
         WritableMap params = Arguments.createMap();
-        Activity activity = getCurrentActivity();
-        if (activity != null) {
-            Intent intent = activity.getIntent();
-            Bundle bundle = intent.getBundleExtra("notification");
-            if (bundle != null) {
-                bundle.putBoolean("foreground", false);
-                String bundleString = convertJSON(bundle);
-                params.putString("dataJSON", bundleString);
-            }
+        Intent intent = mActivity.getIntent();
+        Bundle bundle = intent.getBundleExtra("notification");
+        if (bundle != null) {
+            bundle.putBoolean("foreground", false);
+            String bundleString = convertJSON(bundle);
+            params.putString("dataJSON", bundleString);
         }
+
         promise.resolve(params);
     }
 
