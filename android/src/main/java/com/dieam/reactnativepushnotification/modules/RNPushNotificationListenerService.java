@@ -32,7 +32,7 @@ public class RNPushNotificationListenerService extends FirebaseMessagingService 
         RNPushNotificationListenerService.handleRemotePushNotification(message);
     }
 
-    public static handleReceivedMessage(RemoteMessage message) {
+    public static void handleReceivedMessage(RemoteMessage message) {
         String from = message.getFrom();
         RemoteMessage.Notification remoteNotification = message.getNotification();
 
