@@ -29,6 +29,10 @@ public class RNPushNotificationListenerService extends FirebaseMessagingService 
 
     @Override
     public void onMessageReceived(RemoteMessage message) {
+        RNPushNotificationListenerService.handleRemotePushNotification(message);
+    }
+
+    public static handleReceivedMessage(RemoteMessage message) {
         String from = message.getFrom();
         RemoteMessage.Notification remoteNotification = message.getNotification();
 
@@ -100,7 +104,7 @@ public class RNPushNotificationListenerService extends FirebaseMessagingService 
         });
     }
 
-    private JSONObject getPushData(String dataString) {
+    private static JSONObject getPushData(String dataString) {
         try {
             return new JSONObject(dataString);
         } catch (Exception e) {
@@ -108,7 +112,7 @@ public class RNPushNotificationListenerService extends FirebaseMessagingService 
         }
     }
 
-    private void handleRemotePushNotification(ReactApplicationContext context, Bundle bundle) {
+    private static void handleRemotePushNotification(ReactApplicationContext context, Bundle bundle) {
 
         // If notification ID is not provided by the user for push notification, generate one at random
         if (bundle.getString("id") == null) {
@@ -116,7 +120,7 @@ public class RNPushNotificationListenerService extends FirebaseMessagingService 
             bundle.putString("id", String.valueOf(randomNumberGenerator.nextInt()));
         }
 
-        Boolean isForeground = isApplicationInForeground();
+        Boolean isForeground = RNPushNotificationListenerService.this.isApplicationInForeground();
 
         RNPushNotificationJsDelivery jsDelivery = new RNPushNotificationJsDelivery(context);
         bundle.putBoolean("foreground", isForeground);
