@@ -28,10 +28,10 @@ import java.util.Random;
 import static android.content.Context.ACTIVITY_SERVICE;
 import static com.dieam.reactnativepushnotification.modules.RNPushNotification.LOG_TAG;
 
-public class RNMessageReceivedHandler {
+public class RNReceivedMessageHandler {
     private FirebaseMessagingService mFirebaseMessagingService;
 
-    public RNMessageReceivedHandler(@NonNull FirebaseMessagingService service) {
+    public RNReceivedMessageHandler(@NonNull FirebaseMessagingService service) {
         this.mFirebaseMessagingService = service;
     }
 
