@@ -37,6 +37,7 @@ public class RNReceivedMessageHandler {
 
     public void handleReceivedMessage(RemoteMessage message) {
         final Bundle bundle = new Bundle();
+        RemoteMessage.Notification remoteNotification = message.getNotification();
 
         // Putting it from remoteNotification first so it can be overriden if message
         // data has it
